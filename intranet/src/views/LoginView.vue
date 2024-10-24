@@ -11,29 +11,24 @@ const password = ref('');
 const submitForm = async () => {
   try {
     const formData = new FormData();
-    formData.append('username', username.value);
     formData.append('email', email.value);
     formData.append('password', password.value);
-    formData.append('role', roleValue.value);
 
-    const response = await axios.post('http://localhost:8000/register',
+    const response = await axios.post('http://localhost:8000/login',
       formData,
     );
-    console.log('User registered successfully:', response.data);
+    console.log('User logged successfully:', response.data);
+    localStorage.setItem('token', response.data.token);
   } catch (error) {
-    console.error('Error registering user:', error);
+    console.error('Error logged user:', error);
   }
 };
 </script>
 
 <template>
   <main>
-    <Fieldset legend="Inscription" class="register">
+    <Fieldset legend="Connexion" class="register">
       <form @submit.prevent="submitForm">
-        <IftaLabel>
-          <InputText id="username" v-model="username" />
-          <label for="username">Username</label>
-        </IftaLabel>
         <IftaLabel>
           <InputText id="email" v-model="email" />
           <label for="email">Email</label>
@@ -42,19 +37,9 @@ const submitForm = async () => {
           <InputText id="password" v-model="password" />
           <label for="password">Password</label>
         </IftaLabel>
-        <div>
-          <SelectButton v-model="roleValue" :options="options" aria-labelledby="role" />
-        </div>
 
-        <Button label="S'enregistrer" raised type="submit" />
+        <Button label="Se connecter" raised type="submit" />
       </form>
-      <Divider />
-      <div class="connect">
-        <p>
-          Vous avez déjà un compte ?
-        </p>
-        <Button label="Se connecter" severity="secondary" raised />
-      </div>
     </Fieldset>
   </main>
 </template>

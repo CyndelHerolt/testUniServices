@@ -7,6 +7,46 @@
       <sourceFolder url="file://$MODULE_DIR$/orchestrator/tests" isTestSource="true" packagePrefix="App\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/structure/src" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/structure/tests" isTestSource="true" packagePrefix="App\Tests\" />
+      <excludeFolder url="file://$MODULE_DIR$/orchestrator/vendor/lcobucci/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/orchestrator/vendor/lcobucci/jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/orchestrator/vendor/lexik/jwt-authentication-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/orchestrator/vendor/nelmio/cors-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/api-platform/doctrine-common" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/api-platform/doctrine-orm" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/api-platform/documentation" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/api-platform/http-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/api-platform/hydra" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/api-platform/json-schema" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/api-platform/jsonld" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/api-platform/metadata" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/api-platform/openapi" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/api-platform/serializer" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/api-platform/state" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/api-platform/symfony" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/api-platform/validator" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/doctrine/common" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/lcobucci/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/lcobucci/jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/lexik/jwt-authentication-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/nelmio/cors-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/phpdocumentor/reflection-common" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/phpdocumentor/reflection-docblock" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/phpdocumentor/type-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/phpstan/phpdoc-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/psr/link" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/symfony/asset" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/symfony/expression-language" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/symfony/polyfill-uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/symfony/serializer" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/symfony/translation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/symfony/twig-bridge" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/symfony/twig-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/symfony/uid" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/symfony/validator" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/symfony/web-link" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/twig/twig" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/structure/vendor/willdurand/negotiation" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

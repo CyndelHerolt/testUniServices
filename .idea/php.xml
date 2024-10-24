@@ -203,6 +203,46 @@
       <path value="$PROJECT_DIR$/orchestrator/vendor/phpunit/php-code-coverage" />
       <path value="$PROJECT_DIR$/orchestrator/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/orchestrator/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/orchestrator/vendor/nelmio/cors-bundle" />
+      <path value="$PROJECT_DIR$/structure/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/structure/vendor/api-platform/documentation" />
+      <path value="$PROJECT_DIR$/structure/vendor/api-platform/symfony" />
+      <path value="$PROJECT_DIR$/structure/vendor/api-platform/jsonld" />
+      <path value="$PROJECT_DIR$/structure/vendor/api-platform/openapi" />
+      <path value="$PROJECT_DIR$/structure/vendor/nelmio/cors-bundle" />
+      <path value="$PROJECT_DIR$/structure/vendor/api-platform/doctrine-orm" />
+      <path value="$PROJECT_DIR$/structure/vendor/api-platform/validator" />
+      <path value="$PROJECT_DIR$/structure/vendor/api-platform/state" />
+      <path value="$PROJECT_DIR$/structure/vendor/api-platform/doctrine-common" />
+      <path value="$PROJECT_DIR$/structure/vendor/api-platform/serializer" />
+      <path value="$PROJECT_DIR$/structure/vendor/api-platform/hydra" />
+      <path value="$PROJECT_DIR$/structure/vendor/api-platform/json-schema" />
+      <path value="$PROJECT_DIR$/structure/vendor/api-platform/http-cache" />
+      <path value="$PROJECT_DIR$/structure/vendor/api-platform/metadata" />
+      <path value="$PROJECT_DIR$/structure/vendor/willdurand/negotiation" />
+      <path value="$PROJECT_DIR$/structure/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/structure/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/structure/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/structure/vendor/psr/link" />
+      <path value="$PROJECT_DIR$/structure/vendor/symfony/serializer" />
+      <path value="$PROJECT_DIR$/structure/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/structure/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/structure/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/structure/vendor/symfony/web-link" />
+      <path value="$PROJECT_DIR$/structure/vendor/symfony/twig-bundle" />
+      <path value="$PROJECT_DIR$/structure/vendor/symfony/expression-language" />
+      <path value="$PROJECT_DIR$/structure/vendor/symfony/validator" />
+      <path value="$PROJECT_DIR$/structure/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/structure/vendor/symfony/twig-bridge" />
+      <path value="$PROJECT_DIR$/structure/vendor/symfony/asset" />
+      <path value="$PROJECT_DIR$/structure/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/structure/vendor/doctrine/common" />
+      <path value="$PROJECT_DIR$/structure/vendor/lexik/jwt-authentication-bundle" />
+      <path value="$PROJECT_DIR$/structure/vendor/lcobucci/clock" />
+      <path value="$PROJECT_DIR$/structure/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/orchestrator/vendor/lexik/jwt-authentication-bundle" />
+      <path value="$PROJECT_DIR$/orchestrator/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/orchestrator/vendor/lcobucci/clock" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
@@ -212,6 +252,7 @@
   <component name="PhpUnit">
     <phpunit_settings>
       <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/orchestrator/phpunit.xml.dist" custom_loader_path="$PROJECT_DIR$/orchestrator/vendor/autoload.php" use_configuration_file="true" />
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/structure/vendor/autoload.php" />
     </phpunit_settings>
   </component>
   <component name="PsalmOptionsConfiguration">
