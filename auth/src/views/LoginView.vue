@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import router from "@/router/index.js";
 
 const roleValue = ref('Etudiant');
 const options = ref(['Etudiant', 'Enseignant', 'Administratif']);
@@ -19,6 +20,7 @@ const submitForm = async () => {
     );
     console.log('User logged successfully:', response.data);
     localStorage.setItem('token', response.data.token);
+    router.push('/test');
   } catch (error) {
     console.error('Error logged user:', error);
   }
