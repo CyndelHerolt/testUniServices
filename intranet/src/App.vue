@@ -11,6 +11,7 @@ const selectedStudent = ref(null);
 // Retrieve the JWT token from the URL and store it in local storage
 const url = new URL(window.location.href);
 const token = url.searchParams.get('token');
+
 if (token) {
   localStorage.setItem('token', token);
 }
@@ -38,7 +39,7 @@ const submitForm = async () => {
 
 onMounted(async () => {
   try {
-    const response = await axios.get('http://localhost:8001/api/users', {
+    const response = await axios.get('http://localhost:8000/universal/users/8001', {
       headers: {
         Authorization: `Bearer ${storedToken.value}`,
       },
