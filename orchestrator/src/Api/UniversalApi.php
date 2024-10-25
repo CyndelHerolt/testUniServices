@@ -6,10 +6,10 @@ use Symfony\Component\HttpClient\HttpClient;
 
 class UniversalApi
 {
-    public function getAll(string $token, string $endpoint, string $serve): string
+    public function request(string $method, string $token, string $endpoint, string $serve): string
     {
         $client = HttpClient::create();
-        $response = $client->request('GET', 'http://localhost:'.$serve.'/api/'.$endpoint, [
+        $response = $client->request($method, 'http://localhost:'.$serve.'/api/'.$endpoint, [
             'headers' => [
                 'Authorization' => $token,
             ],

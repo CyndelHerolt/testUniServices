@@ -39,7 +39,8 @@ const submitForm = async () => {
 
 onMounted(async () => {
   try {
-    const response = await axios.get('http://localhost:8000/universal/users/8001', {
+    const method = 'GET';
+    const response = await axios.get('http://localhost:8000/universal/GET/users/8001', {
       headers: {
         Authorization: `Bearer ${storedToken.value}`,
       },

@@ -14,11 +14,11 @@ class UniversalApiController extends AbstractController
         private UniversalApi $universalApi
     ) {}
 
-    #[Route('/universal/{endpoint}/{serve}', name: 'app_universal_get_all', methods: ['GET'])]
-    public function getAll(Request $request, string $endpoint, string $serve): Response
+    #[Route('/universal/{method}/{endpoint}/{serve}', name: 'app_universal_get_all', methods: ['GET'])]
+    public function index(Request $request, string $method, string $endpoint, string $serve): Response
     {
         $token = $request->headers->get('Authorization');
-        $result = $this->universalApi->getAll($token, $endpoint, $serve);
+        $result = $this->universalApi->request($method, $token, $endpoint, $serve);
 
         return new Response($result, Response::HTTP_OK, ['Content-Type' => 'application/json']);
     }
