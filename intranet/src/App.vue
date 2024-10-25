@@ -22,11 +22,11 @@ const submitForm = async () => {
   try {
     const formData = new FormData();
     formData.append('libelle', libelle.value);
-    formData.append('coeff', coeff.value);
-    formData.append('note', note.value);
-    formData.append('student', selectedStudent.value.id);
+    formData.append('coeff', JSON.stringify({ value: coeff.value, type: 'int' }));
+    formData.append('note', JSON.stringify({ value: note.value, type: 'int' }));
+    formData.append('student', JSON.stringify({ value: selectedStudent.value.id, type: 'int' }));
 
-    const response = await axios.post('http://localhost:8000/note', formData, {
+    const response = await axios.post('http://localhost:8000/universal/evaluations/8002', formData, {
       headers: {
         Authorization: `Bearer ${storedToken.value}`,
       },
@@ -40,7 +40,7 @@ const submitForm = async () => {
 onMounted(async () => {
   try {
     const method = 'GET';
-    const response = await axios.get('http://localhost:8000/universal/GET/users/8001', {
+    const response = await axios.get('http://localhost:8000/universal/users/8001', {
       headers: {
         Authorization: `Bearer ${storedToken.value}`,
       },
@@ -55,7 +55,7 @@ onMounted(async () => {
 <template>
   <main>
     <h1>Intranet</h1>
-<!--    <small>Token: {{ storedToken }}</small>-->
+    <!--    <small>Token: {{ storedToken }}</small>-->
 
     <Fieldset legend="Notes" class="notes">
       <form @submit.prevent="submitForm">
