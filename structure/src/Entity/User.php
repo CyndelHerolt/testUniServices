@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,6 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
     operations: [
         new Post(),
         new Get(),
+        new GetCollection(),
     ]
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface

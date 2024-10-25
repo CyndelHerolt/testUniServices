@@ -3,16 +3,18 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
 use App\Repository\EvaluationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EvaluationRepository::class)]
 #[ApiResource(
     operations: [
-        'get',
-        'post',
-        'put',
-        'delete',
+        new Post(),
+        new Get(),
+        new GetCollection(),
     ],
 )]
 class Evaluation
@@ -26,10 +28,13 @@ class Evaluation
     private ?string $libelle = null;
 
     #[ORM\Column]
-    private ?float $coeff = null;
+    private ?int $coeff = null;
 
     #[ORM\Column(nullable: true)]
     private ?float $note = null;
+
+    #[ORM\Column]
+    private ?int $etudiant = null;
 
     public function getId(): ?int
     {
@@ -48,12 +53,12 @@ class Evaluation
         return $this;
     }
 
-    public function getCoeff(): ?float
+    public function getCoeff(): ?int
     {
         return $this->coeff;
     }
 
-    public function setCoeff(float $coeff): static
+    public function setCoeff(int $coeff): static
     {
         $this->coeff = $coeff;
 
@@ -68,6 +73,18 @@ class Evaluation
     public function setNote(?float $note): static
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    public function getEtudiant(): ?int
+    {
+        return $this->etudiant;
+    }
+
+    public function setEtudiant(int $etudiant): static
+    {
+        $this->etudiant = $etudiant;
 
         return $this;
     }

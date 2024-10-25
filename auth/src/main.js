@@ -5,8 +5,6 @@ import App from './App.vue'
 import router from './router'
 import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
-import 'primeicons/primeicons.css'
-
 
 import Button from "primevue/button"
 import Fieldset from 'primevue/fieldset';
@@ -14,11 +12,9 @@ import FloatLabel from 'primevue/floatlabel';
 import IftaLabel from 'primevue/iftalabel';
 import InputText from "primevue/inputtext";
 import Password from 'primevue/password';
-import SelectButton from 'primevue/selectbutton';
-import Divider from 'primevue/divider';
+import SelectButton from 'primevue/selectbutton';import Divider from 'primevue/divider';
 import Card from 'primevue/card';
-import InputNumber from 'primevue/inputnumber';
-import Select from 'primevue/select';
+
 
 const app = createApp(App)
 
@@ -31,8 +27,6 @@ app.component('Password', Password);
 app.component('SelectButton', SelectButton);
 app.component('Divider', Divider);
 app.component('Card', Card);
-app.component('InputNumber', InputNumber);
-app.component('Select', Select);
 
 app.use(router)
 app.use(PrimeVue, {
