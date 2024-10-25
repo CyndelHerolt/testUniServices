@@ -16,7 +16,7 @@ if (token) {
 }
 
 const storedToken = ref(localStorage.getItem('token'));
-
+axios.defaults.withCredentials = true;
 const submitForm = async () => {
   try {
     const formData = new FormData();
@@ -25,7 +25,11 @@ const submitForm = async () => {
     formData.append('note', note.value);
     formData.append('student', selectedStudent.value.id);
 
-    const response = await axios.post('http://localhost:8000/note', formData, storedToken.value);
+    const response = await axios.post('http://localhost:8000/note', formData, {
+      headers: {
+        Authorization: `Bearer ${storedToken.value}`,
+      },
+    });
     console.log('Evaluation added:', response.data);
   } catch (error) {
     console.error('Error posting evaluation:', error);

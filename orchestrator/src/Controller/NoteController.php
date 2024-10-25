@@ -32,8 +32,10 @@ class NoteController extends AbstractController
             'etudiant' => (int)$student,
         ];
 
+        $token = $request->headers->get('Authorization');
+
         // Appel à l'API de scolarité pour créer une note
-        $result = $this->noteApi->create($datas);
+        $result = $this->noteApi->create($datas, $token);
 
         return new Response($result);
     }
