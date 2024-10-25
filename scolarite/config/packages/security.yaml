@@ -5,6 +5,8 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         users_in_memory: { memory: null }
+        jwt:
+            lexik_jwt: ~
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -13,6 +15,7 @@ security:
         api:
             pattern: ^/api
             stateless: true
+            provider: jwt
             jwt: ~
 
         main:
