@@ -6,7 +6,7 @@ const redirectToUnifolio = async () => {
 
 // passer le token en paramètre
 const redirectToIntranet = async () => {
-  window.location.href = `http://localhost:5175?token=${token}`;
+  window.location.href = `http://localhost:5175`;
 }
 </script>
 

@@ -8,19 +8,19 @@ const coeff = ref(1);
 const students = ref([]);
 const selectedStudent = ref(null);
 
-// Retrieve the JWT token from the URL and store it in local storage
-const url = new URL(window.location.href);
-const token = url.searchParams.get('token');
-
+console.log(document.cookie.includes('token'));
+// récupérer le token depuis le cookie
+const token = document.cookie.split('; ').find(row => row.startsWith('token')).split('=')[1];
 if (token) {
   localStorage.setItem('token', token);
 }
+
 
 // extract user data from the token
 const tokenParts = token.split('.');
 const payload = JSON.parse(atob(tokenParts[1]));
 const email = payload.username;
-console.log(payload);
+// console.log(payload);
 
 const storedToken = ref(localStorage.getItem('token'));
 axios.defaults.withCredentials = true;
@@ -173,7 +173,7 @@ const menuItems = ref([
 
 <style scoped>
 .notes {
-  width: 25%;
+  width: 50%;
 
   form {
     display: flex;
@@ -181,8 +181,8 @@ const menuItems = ref([
     gap: 2rem;
     margin: 2rem 0;
 
-    input, #password {
-      width: 100%;
+    input, .p-inputnumber {
+      width: 100% !important;
     }
   }
 }

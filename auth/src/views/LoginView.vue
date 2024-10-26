@@ -20,7 +20,7 @@ const submitForm = async () => {
     );
     console.log('User logged successfully:', response.data);
     localStorage.setItem('token', response.data.token);
-    document.cookie = `token=${response.data.token}; Secure; SameSite=None; HttpOnly`;
+    document.cookie = `token=${response.data.token}; Secure; SameSite=None`;
     location.reload();
     location.href = '/portail';
   } catch (error) {
