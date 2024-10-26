@@ -14,9 +14,20 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const PUBLIC_PAGES = ['login', 'register'];
-  const loggedIn = localStorage.getItem('token');
+  if (PUBLIC_PAGES.includes(to.name)) {
+    return next();
+  }
 
-  if (!loggedIn && !PUBLIC_PAGES.includes(to.name)) {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return next('/login');
+  }
+
+  const tokenParts = token.split('.');
+  const payload = JSON.parse(atob(tokenParts[1]));
+  const exp = payload.exp * 1000; // Convert to milliseconds
+  if (Date.now() >= exp) {
+    localStorage.removeItem('token');
     return next('/login');
   }
 
