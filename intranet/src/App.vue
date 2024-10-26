@@ -57,16 +57,88 @@ onMounted(async () => {
   }
 });
 
-const back = () => {
-  window.location.href = 'http://localhost:5173/portail';
-};
+const items = ref([
+  {
+    label: 'Finder',
+    icon: 'https://primefaces.org/cdn/primevue/images/dock/finder.svg',
+    url: 'http://localhost:5173/portail'
+  },
+  {
+    label: 'App Store',
+    icon: 'https://primefaces.org/cdn/primevue/images/dock/appstore.svg'
+  },
+  {
+    label: 'Photos',
+    icon: 'https://primefaces.org/cdn/primevue/images/dock/photos.svg'
+  },
+  {
+    label: 'Trash',
+    icon: 'https://primefaces.org/cdn/primevue/images/dock/trash.png'
+  }
+]);
+const position = ref('bottom');
+
+
+const menuItems = ref([
+  {
+    label: 'Home',
+    icon: 'pi pi-home',
+    url: 'http://localhost:5173/portail'
+  },
+  {
+    label: 'Features',
+    icon: 'pi pi-star'
+  },
+  {
+    label: 'Projects',
+    icon: 'pi pi-search',
+    items: [
+      {
+        label: 'Components',
+        icon: 'pi pi-bolt'
+      },
+      {
+        label: 'Blocks',
+        icon: 'pi pi-server'
+      },
+      {
+        label: 'UI Kit',
+        icon: 'pi pi-pencil'
+      },
+      {
+        label: 'Templates',
+        icon: 'pi pi-palette',
+        items: [
+          {
+            label: 'Apollo',
+            icon: 'pi pi-palette'
+          },
+          {
+            label: 'Ultima',
+            icon: 'pi pi-palette'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    label: 'Contact',
+    icon: 'pi pi-envelope'
+  }
+]);
 </script>
 
 <template>
   <header>
-    <Button label="Home" raised @click="back"
-    />
+    <Menubar :model="menuItems" />
   </header>
+  <Dock :model="items" :position="position">
+    <template #itemicon="{ item }">
+      <img v-tooltip.top="item.label" :alt="item.label" :src="item.icon" style="width: 100%" />
+    </template>
+  </Dock>
+
+
   <main>
     <h1>Intranet</h1>
     <!--    <small>Token: {{ storedToken }}</small>-->
