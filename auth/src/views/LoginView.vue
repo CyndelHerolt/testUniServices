@@ -21,7 +21,8 @@ const submitForm = async () => {
     console.log('User logged successfully:', response.data);
     localStorage.setItem('token', response.data.token);
     document.cookie = `token=${response.data.token}; Secure; SameSite=None; HttpOnly`;
-    router.push('/test');
+    location.reload();
+    location.href = '/';
   } catch (error) {
     console.error('Error logged user:', error);
   }

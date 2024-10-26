@@ -12,4 +12,15 @@ const router = createRouter({
   ]
 })
 
+router.beforeEach((to, from, next) => {
+  const PUBLIC_PAGES = ['login', 'register'];
+  const loggedIn = localStorage.getItem('token');
+
+  if (!loggedIn && !PUBLIC_PAGES.includes(to.name)) {
+    return next('/login');
+  }
+
+  next();
+});
+
 export default router

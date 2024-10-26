@@ -16,6 +16,12 @@ if (token) {
   localStorage.setItem('token', token);
 }
 
+// extract user data from the token
+const tokenParts = token.split('.');
+const payload = JSON.parse(atob(tokenParts[1]));
+const email = payload.username;
+console.log(payload);
+
 const storedToken = ref(localStorage.getItem('token'));
 axios.defaults.withCredentials = true;
 const submitForm = async () => {
@@ -50,9 +56,17 @@ onMounted(async () => {
     console.error('Error fetching users:', error);
   }
 });
+
+const back = () => {
+  window.location.href = 'http://localhost:5173/portail';
+};
 </script>
 
 <template>
+  <header>
+    <Button label="Home" raised @click="back"
+    />
+  </header>
   <main>
     <h1>Intranet</h1>
     <!--    <small>Token: {{ storedToken }}</small>-->

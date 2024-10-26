@@ -1,18 +1,17 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+import {RouterLink, RouterView} from 'vue-router'
+import {ref, computed} from 'vue';
 
-const isLoggedIn = ref(false)
+const userToken = ref(localStorage.getItem('token'));
 
-onMounted(() => {
-  isLoggedIn.value = !!localStorage.getItem('token')
-})
+const isLoggedIn = computed(() => {
+  return userToken.value != null;
+});
 
 const logout = () => {
-  localStorage.removeItem('token')
-  isLoggedIn.value = false
-  window.location.href = '/login'
-}
+  localStorage.removeItem('token');
+  location.reload();
+};
 </script>
 
 <template>
