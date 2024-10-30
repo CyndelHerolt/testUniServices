@@ -9,7 +9,6 @@ if (token) {
 const tokenParts = token.split('.');
 const payload = JSON.parse(atob(tokenParts[1]));
 const email = payload.username;
-console.log(payload);
 
 const redirectToUnifolio = async () => {
   window.location.href = 'http://localhost:5174';
