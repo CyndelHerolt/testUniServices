@@ -17,6 +17,8 @@ class UniversalApiController extends AbstractController
     #[Route('/universal/{endpoint}/{serve}', name: 'app_universal_get_all', methods: ['GET', 'POST'])]
     public function index(Request $request, string $endpoint, string $serve): Response
     {
+        // si le endpoint contient un "_" on le remplace par un "/"
+        $endpoint = str_replace('_', '/', $endpoint);
         $method = $request->getMethod();
         $datas = $method === 'POST' ? json_decode($request->getContent(), true) : null;
         $token = $request->headers->get('Authorization');

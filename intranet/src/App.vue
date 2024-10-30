@@ -3,6 +3,31 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import router from '@/router';
 
+const note = ref(10);
+const libelle = ref('');
+const coeff = ref(1);
+const students = ref([]);
+const selectedStudent = ref(null);
+const user = ref(null);
+
+onMounted(() => {
+  checkTokenExpiration();
+});
+
+// récupérer le token depuis le cookie
+const token = document.cookie.split('; ').find(row => row.startsWith('token')).split('=')[1];
+if (token) {
+  localStorage.setItem('token', token);
+}
+
+// extract user data from the token
+const tokenParts = token.split('.');
+const payload = JSON.parse(atob(tokenParts[1]));
+const userId = payload.user_id;
+console.log(payload);
+
+const storedToken = ref(localStorage.getItem('token'));
+
 const checkTokenExpiration = () => {
   const token = localStorage.getItem('token');
   if (token) {
@@ -18,33 +43,29 @@ const checkTokenExpiration = () => {
   }
 };
 
-onMounted(() => {
-  checkTokenExpiration();
+onMounted(async () => {
+  try {
+    const method = 'GET';
+    const response = await axios.get('http://localhost:8000/universal/users/8001', {
+      headers: {
+        Authorization: `Bearer ${storedToken.value}`,
+      },
+    });
+    students.value = response.data.member;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+  }
+  try {
+    const response = await axios.get(`http://localhost:8000/universal/users_${userId}/8001/`, {
+      headers: {
+        Authorization: `Bearer ${storedToken.value}`,
+      },
+    });
+    user.value = response.data;
+  } catch (error) {
+    console.error('Error fetching user:', error);
+  }
 });
-
-
-const note = ref(10);
-const libelle = ref('');
-const coeff = ref(1);
-const students = ref([]);
-const selectedStudent = ref(null);
-
-console.log(document.cookie.includes('token'));
-// récupérer le token depuis le cookie
-const token = document.cookie.split('; ').find(row => row.startsWith('token')).split('=')[1];
-if (token) {
-  localStorage.setItem('token', token);
-}
-
-
-// extract user data from the token
-const tokenParts = token.split('.');
-const payload = JSON.parse(atob(tokenParts[1]));
-const email = payload.username;
-// console.log(payload);
-
-const storedToken = ref(localStorage.getItem('token'));
-
 
 axios.defaults.withCredentials = true;
 const submitForm = async () => {
@@ -67,20 +88,6 @@ const submitForm = async () => {
     console.error('Error posting evaluation:', error);
   }
 };
-
-onMounted(async () => {
-  try {
-    const method = 'GET';
-    const response = await axios.get('http://localhost:8000/universal/users/8001', {
-      headers: {
-        Authorization: `Bearer ${storedToken.value}`,
-      },
-    });
-    students.value = response.data.member;
-  } catch (error) {
-    console.error('Error fetching users:', error);
-  }
-});
 
 const items = ref([
   {
@@ -166,7 +173,8 @@ const menuItems = ref([
 
   <main>
     <h1>Intranet</h1>
-    <!--    <small>Token: {{ storedToken }}</small>-->
+    <!--   afficher l'email de la const user -->
+    <p>Hello {{ user?.email }}</p>
 
     <Fieldset legend="Notes" class="notes">
       <form @submit.prevent="submitForm">
