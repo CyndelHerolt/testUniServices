@@ -1,6 +1,27 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import router from '@/router';
+
+const checkTokenExpiration = () => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    const tokenParts = token.split('.');
+    const payload = JSON.parse(atob(tokenParts[1]));
+    const exp = payload.exp * 1000; // Convert to milliseconds
+    if (Date.now() >= exp) {
+      localStorage.removeItem('token');
+      router.push('/login');
+    }
+  } else {
+    router.push('/login');
+  }
+};
+
+onMounted(() => {
+  checkTokenExpiration();
+});
+
 
 const note = ref(10);
 const libelle = ref('');
@@ -23,17 +44,21 @@ const email = payload.username;
 // console.log(payload);
 
 const storedToken = ref(localStorage.getItem('token'));
+
+
 axios.defaults.withCredentials = true;
 const submitForm = async () => {
   try {
-    const formData = new FormData();
-    formData.append('libelle', libelle.value);
-    formData.append('coeff', JSON.stringify({ value: coeff.value, type: 'int' }));
-    formData.append('note', JSON.stringify({ value: note.value, type: 'int' }));
-    formData.append('student', JSON.stringify({ value: selectedStudent.value.id, type: 'int' }));
+    const data = {
+      libelle: libelle.value,
+      coeff: coeff.value,
+      note: note.value,
+      etudiant: selectedStudent.value.id
+    };
 
-    const response = await axios.post('http://localhost:8000/universal/evaluations/8002', formData, {
+    const response = await axios.post('http://localhost:8000/universal/evaluations/8002', data, {
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${storedToken.value}`,
       },
     });
