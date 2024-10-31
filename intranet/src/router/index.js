@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import EdtView from '../views/EdtView.vue'
+import EvalView from "@/views/EvalView.vue";
+import HomeView from "@/views/HomeView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,6 +10,16 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/eval',
+      name: 'eval',
+      component: EvalView
+    },
+    {
+      path: '/edt',
+      name: 'edt',
+      component: EdtView
     },
   ]
 })
@@ -20,7 +32,7 @@ router.beforeEach((to, from, next) => {
 
   const token = localStorage.getItem('token');
   if (!token) {
-    return next('/login');
+    return window.location.href = 'http://localhost:5173/login';
   }
 
   const tokenParts = token.split('.');
@@ -28,7 +40,8 @@ router.beforeEach((to, from, next) => {
   const exp = payload.exp * 1000; // Convert to milliseconds
   if (Date.now() >= exp) {
     localStorage.removeItem('token');
-    return next('/login');
+    // renvoyer vers localhost:5173/ et recharger la page
+    return window.location.href = 'http://localhost:5173/portail';
   }
 
   next();

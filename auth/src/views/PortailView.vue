@@ -23,10 +23,6 @@ const redirectToIntranet = async () => {
 <template>
   <main>
     <Fieldset legend="Portail" class="register">
-      <p>Token
-        <span v-if="token">: {{ token }}</span>
-        <span v-else>: No token</span>
-      </p>
       <Card>
         <template #title>Tools</template>
         <template #content>

@@ -18,7 +18,7 @@ class UniversalApiController extends AbstractController
     public function index(Request $request, string $endpoint, string $serve): Response
     {
         // si le endpoint contient un "_" on le remplace par un "/"
-        $endpoint = str_replace('_', '/', $endpoint);
+        $endpoint = str_replace('-', '/', $endpoint);
         $method = $request->getMethod();
         $datas = $method === 'POST' ? json_decode($request->getContent(), true) : null;
         $token = $request->headers->get('Authorization');
