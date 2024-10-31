@@ -81,7 +81,7 @@ const shouldRenderCourse = (dayIndex, hour) => {
     <table>
       <thead>
       <tr>
-        <th>Heures</th>
+        <th class="hours">Heures</th>
         <th v-for="(day, index) in weekDays" :key="day">{{ day }}</th>
       </tr>
       </thead>
@@ -90,7 +90,11 @@ const shouldRenderCourse = (dayIndex, hour) => {
         <td class="hours">{{ hour }}</td>
         <template v-for="(day, index) in weekDays" :key="day">
           <td v-if="shouldRenderCourse(index + 1, hour)" v-for="course in getCoursesForDayAndHour(index + 1, hour)" :key="course.id" v-bind:rowspan="getRowSpan(course)" class="course">
-            {{ course.matiere }} ({{ course.debut }} - {{ course.fin }})
+            <ul>
+              <li>{{ course.matiere }}</li>
+              <li>{{ course.salle }}</li>
+              <li>{{ course.type }} - {{ course.groupe }}</li>
+            </ul>
           </td>
           <td v-else></td>
         </template>
@@ -103,30 +107,37 @@ const shouldRenderCourse = (dayIndex, hour) => {
 <style scoped>
 table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 5px;
   table-layout: fixed;
 }
 
 .hours {
-  width: fit-content !important;
+  width: 10% !important;
 }
 
 th, td {
-  border: 1px solid rgba(255, 255, 255, 0.24);
   padding: 8px;
   text-align: left;
   width: 20%;
+  background-color: rgba(119, 119, 119, 0.05);
 }
 
 td {
   vertical-align: top;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
 .course {
-  background-color: #f0f0f0;
+  background-color: #c3ffe6;
   color: #333;
   margin: 2px 0;
-  padding: 4px;
+  padding: 5px;
   border-radius: 4px;
 }
 </style>
