@@ -66,7 +66,7 @@ const submitEdt = handleSubmit(async (values) => {
       groupe: values.groupe,
       date: formattedDate,
       matiere: values.matiere,
-      user: values.selectedUserValue.id,
+      user: values.selectedUser.id,
     };
 
     const response = await axios.post('http://localhost:8000/universal/edt_plannings/8002', data, {
