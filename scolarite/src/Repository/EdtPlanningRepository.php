@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\EdtPlanning;
+use DateTimeInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @extends ServiceEntityRepository<EdtPlanning>
@@ -14,6 +16,17 @@ class EdtPlanningRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, EdtPlanning::class);
+    }
+
+    public function getEdtWeek(DateTimeInterface $debut, DateTimeInterface $fin): array
+    {
+        // récupérer les objets dont les dates sont comprises entre $debut et $fin
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.date BETWEEN :debut AND :fin')
+            ->setParameter('debut', $debut)
+            ->setParameter('fin', $fin)
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**
