@@ -38,11 +38,9 @@ const getCours = async () => {
 };
 onMounted(getCours);
 
-const Days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
 const hours = Array.from({ length: 26 }, (_, i) => `${8 + Math.floor(i / 2)}:${i % 2 === 0 ? '00' : '30'}`);
 
-const getCoursesForDayAndHour = (day, hour) => {
-  const dayIndex = Days.indexOf(day) + 1;
+const getCoursesForDayAndHour = (dayIndex, hour) => {
   const hourInt = parseInt(hour.split(':')[0], 10);
   const minuteInt = parseInt(hour.split(':')[1], 10);
   return edtData.value.filter(course => {
@@ -55,24 +53,48 @@ const getCoursesForDayAndHour = (day, hour) => {
            (courseEndHour > hourInt || (courseEndHour === hourInt && courseEndMinute > minuteInt));
   });
 };
+
+const getRowSpan = (course) => {
+  const startHour = Math.floor(course.debut);
+  const startMinute = (course.debut % 1) * 60;
+  const endHour = Math.floor(course.fin);
+  const endMinute = (course.fin % 1) * 60;
+  const duration = (endHour * 60 + endMinute) - (startHour * 60 + startMinute);
+  return Math.ceil(duration / 30);
+};
+
+const shouldRenderCourse = (dayIndex, hour) => {
+  const hourInt = parseInt(hour.split(':')[0], 10);
+  const minuteInt = parseInt(hour.split(':')[1], 10);
+  return edtData.value.some(course => {
+    const courseStartHour = Math.floor(course.debut);
+    const courseStartMinute = (course.debut % 1) * 60;
+    return course.jour === dayIndex &&
+           courseStartHour === hourInt &&
+           courseStartMinute === minuteInt;
+  });
+};
 </script>
 
 <template>
   <div class="edt-show">
     <table>
       <thead>
-        <tr>
-          <th v-for="day in weekDays" :key="day">{{ day }}</th>
-        </tr>
+      <tr>
+        <th>Heures</th>
+        <th v-for="(day, index) in weekDays" :key="day">{{ day }}</th>
+      </tr>
       </thead>
       <tbody>
-        <tr v-for="hour in hours" :key="hour">
-          <td v-for="day in Days" :key="day">
-            <div v-for="course in getCoursesForDayAndHour(day, hour)" :key="course.id" class="course">
-              {{ course.matiere }} ({{ course.debut }} - {{ course.fin }})
-            </div>
+      <tr v-for="hour in hours" :key="hour">
+        <td class="hours">{{ hour }}</td>
+        <template v-for="(day, index) in weekDays" :key="day">
+          <td v-if="shouldRenderCourse(index + 1, hour)" v-for="course in getCoursesForDayAndHour(index + 1, hour)" :key="course.id" v-bind:rowspan="getRowSpan(course)" class="course">
+            {{ course.matiere }} ({{ course.debut }} - {{ course.fin }})
           </td>
-        </tr>
+          <td v-else></td>
+        </template>
+      </tr>
       </tbody>
     </table>
   </div>
@@ -82,16 +104,21 @@ const getCoursesForDayAndHour = (day, hour) => {
 table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.hours {
+  width: fit-content !important;
 }
 
 th, td {
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.24);
   padding: 8px;
   text-align: left;
+  width: 20%;
 }
 
 td {
-  height: 50px;
   vertical-align: top;
 }
 
