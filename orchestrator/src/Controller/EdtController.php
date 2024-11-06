@@ -14,7 +14,6 @@ class EdtController extends AbstractController
 {
     public function __construct(
         private EdtApi $edtApi,
-        private EdtPlanningDataTransformer $edtPlanningDataTransformer,
     )
     {
     }
